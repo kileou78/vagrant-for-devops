@@ -1,5 +1,6 @@
 #!/bin/bash
 yum -y update
+yum -y vim
 yum -y install epel-release
 
 # install ansible
