@@ -8,7 +8,7 @@ IP = "10.0.0.10"
 
 Vagrant.configure("2") do |config|
   config.vm.define "ansible" do |ansible|
-    ansible.vm.box = "generic/centos7"
+    ansible.vm.box = "alvistack/centos-8-stream"
     #config.ssh.username = "doudou"
     #config.ssh.insert_key = true
     ansible.vm.network "private_network", ip: "IP"
