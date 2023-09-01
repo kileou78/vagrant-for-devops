@@ -10,6 +10,12 @@ sudo mkdir /tmp/tower && cd  /tmp/tower
 sudo curl -k -O https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz
 sudo tar xvf ansible-tower-setup-latest.tar.gz
 cd ansible-tower-setup*/
+
+# Replace passwords in inventoty file before installing
+sed -i 's/admin_password=''/admin_password='AdminPassword'/' inventory
+sed -i 's/pg_password=''/pg_password='PgStrongPassword'/' inventory
+sed -i 's/rabbitmq_password=''/rabbitmq_password='RabbitmqPassword'/' inventory
+
 sudo cat inventory | grep admin_password
 sudo ./setup.sh
 
