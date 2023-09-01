@@ -1,16 +1,16 @@
 sudo yum -y update
 sudo yum -y install epel-repo vim curl
 # Set keyboard to FR on centos
-localectl set-keymap fr
+sudo localectl set-keymap fr
 sudo yum -y update
 sudo yum -y install ansible
 ansible --version
 
-mkdir /tmp/tower && cd  /tmp/tower
-curl -k -O https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz
-tar xvf ansible-tower-setup-latest.tar.gz
+sudo mkdir /tmp/tower && cd  /tmp/tower
+sudo curl -k -O https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz
+sudo tar xvf ansible-tower-setup-latest.tar.gz
 cd ansible-tower-setup*/
-cat inventory | grep admin_password
+sudo cat inventory | grep admin_password
 sudo ./setup.sh
 
 # End message
