@@ -8,6 +8,9 @@ sudo yum -y update
 sudo yum -y install ansible
 ansible --version
 
+### Some initial setup
+mkdir /etc/ansible/group_vars
+
 
 # Install Ansible Tower de Redhat # Necessite une licence
 # Open sources Ansible AWX et Semaphore
@@ -25,6 +28,12 @@ ansible --version
 #sudo ./setup.sh
 # Fin install Ansible Tower
 
+# ssh config
+ssh-keygen -t ecdsa -b 521
+ssh-copy-id vagrant@10.0.0.11
+sudo -u vagrant ssh-keygen -t ecdsa -b 521 -N "" -f /home/vagrant/.ssh/id_rsa
+
+
 # Install Snap Store
 sudo yum install snapd
 sudo systemctl enable --now snapd.socket
@@ -37,11 +46,12 @@ sudo snap install semaphore
 
 sudo snap stop semaphore
 export PATH="/var/lib/snapd/snap/semaphore/current/usr/bin/:$PATH"
-sudo semaphore user add --admin \
+sudo env "PATH=$PATH" semaphore user add --admin \
 --login doudou \
 --name=doudou \
 --email=kileou78@yahoo.fr \
 --password=admin
+sudo env "PATH=$PATH" semaphore user add --admin --login doudou --name doudou --email kileou78@yahoo.fr --password admin
 sudo snap start semaphore
 # check status
 sudo snap services semaphore
